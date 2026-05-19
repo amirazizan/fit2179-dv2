@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 540,
+  "height": 430,
+  "title": "Bottom 15 Districts by Electricity Access",
+  "data": {
+    "url": "data/master_district_2022_mapready.csv"
+  },
+  "transform": [
+    {
+      "filter": "isValid(datum.electricity)"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "electricity",
+          "order": "ascending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rank <= 15"
+    }
+  ],
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 3
+  },
+  "encoding": {
+    "y": {
+      "field": "district",
+      "type": "nominal",
+      "sort": "x",
+      "title": null
+    },
+    "x": {
+      "field": "electricity",
+      "type": "quantitative",
+      "title": "Electricity access (%)",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "district",
+        "type": "nominal",
+        "title": "District"
+      },
+      {
+        "field": "electricity",
+        "type": "quantitative",
+        "title": "Electricity access (%)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 520,
+  "height": 420,
+  "title": {
+    "text": "Top 12 Districts by Median Household Income",
+    "subtitle": [
+      "A concentrated group of urban and industrial districts dominates the upper end of the income distribution."
+    ]
+  },
+  "data": {
+    "url": "data/master_district_2022_mapready.csv"
+  },
+  "transform": [
+    {
+      "filter": "isValid(datum.income_median)"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rownum"
+        }
+      ],
+      "sort": [
+        {
+          "field": "income_median",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rownum <= 12"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null
+        },
+        "x": {
+          "field": "income_median",
+          "type": "quantitative",
+          "title": "Median household income (RM)"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "fontSize": 11
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "income_median",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "income_median",
+          "type": "quantitative",
+          "format": ",.0f"
+        }
+      }
+    }
+  ]
+}

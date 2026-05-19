@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 520,
+  "title": "Median Household Income by District, Malaysia (2022)",
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "js/malaysia_districts.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "mys_admin2"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.adm2_name",
+      "from": {
+        "data": {
+          "url": "data/master_district_2022_mapready.csv"
+        },
+        "key": "join_district",
+        "fields": [
+          "state",
+          "district",
+          "income_median"
+        ]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "color": {
+      "field": "income_median",
+      "type": "quantitative",
+      "title": "Median household income (RM)",
+      "scale": {
+        "scheme": "blues"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.adm1_name",
+        "type": "nominal",
+        "title": "Boundary state"
+      },
+      {
+        "field": "properties.adm2_name",
+        "type": "nominal",
+        "title": "Boundary district"
+      },
+      {
+        "field": "district",
+        "type": "nominal",
+        "title": "Matched district"
+      },
+      {
+        "field": "income_median",
+        "type": "quantitative",
+        "title": "Median income"
+      }
+    ]
+  }
+}

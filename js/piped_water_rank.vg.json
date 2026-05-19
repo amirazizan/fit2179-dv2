@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 520,
+  "height": 420,
+  "title": {
+    "text": "Bottom 12 Districts by Piped Water Access",
+    "subtitle": [
+      "Piped water shows clearer district-level variation than sanitation in the 2022 amenities data."
+    ]
+  },
+  "data": {
+    "url": "data/master_district_2022_mapready.csv"
+  },
+  "transform": [
+    {
+      "filter": "isValid(datum.piped_water)"
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "rownum"
+        }
+      ],
+      "sort": [
+        {
+          "field": "piped_water",
+          "order": "ascending"
+        }
+      ]
+    },
+    {
+      "filter": "datum.rownum <= 12"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": "x",
+          "title": null
+        },
+        "x": {
+          "field": "piped_water",
+          "type": "quantitative",
+          "title": "Households with piped water (%)",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "fontSize": 11
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": "x"
+        },
+        "x": {
+          "field": "piped_water",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "piped_water",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ]
+}

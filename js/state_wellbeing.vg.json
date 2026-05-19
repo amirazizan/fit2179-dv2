@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 520,
+  "height": 420,
+  "title": {
+    "text": "Composite Wellbeing and Access Score by State",
+    "subtitle": [
+      "The composite score summarises income, utilities, and school density to show broad state-level positioning."
+    ]
+  },
+  "data": {
+    "url": "data/state_summary_2022.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null
+        },
+        "x": {
+          "field": "wellbeing_score",
+          "type": "quantitative",
+          "title": "Composite score (0\u2013100)"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "fontSize": 11
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "wellbeing_score",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "wellbeing_score",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ]
+}

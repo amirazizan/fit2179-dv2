@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 520,
+  "height": 420,
+  "title": {
+    "text": "Average District Income by State",
+    "subtitle": [
+      "Averaging across districts reduces the influence of a few exceptional high-income districts."
+    ]
+  },
+  "data": {
+    "url": "data/state_summary_2022.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null
+        },
+        "x": {
+          "field": "median_income",
+          "type": "quantitative",
+          "title": "Average district median income (RM)"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 4,
+        "fontSize": 11
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "median_income",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "median_income",
+          "type": "quantitative",
+          "format": ",.0f"
+        }
+      }
+    }
+  ]
+}

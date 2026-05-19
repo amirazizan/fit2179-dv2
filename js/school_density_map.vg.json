@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 520,
+  "title": "School Density by District, Malaysia (2022)",
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "js/malaysia_districts.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "mys_admin2"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.adm2_name",
+      "from": {
+        "data": {
+          "url": "data/master_district_2022_mapready.csv"
+        },
+        "key": "join_district",
+        "fields": [
+          "state",
+          "district",
+          "schools_per_10000"
+        ]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "color": {
+      "field": "schools_per_10000",
+      "type": "quantitative",
+      "title": "Schools per 10,000 residents",
+      "scale": {
+        "scheme": "teals",
+        "domain": [
+          0,
+          120
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "district",
+        "type": "nominal",
+        "title": "District"
+      },
+      {
+        "field": "schools_per_10000",
+        "type": "quantitative",
+        "title": "Schools per 10,000"
+      }
+    ]
+  }
+}

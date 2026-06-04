@@ -1,0 +1,293 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 820,
+  "height": 340,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
+  },
+  "data": {
+    "values": [
+      {
+        "district": "Betong",
+        "indicator": "Piped water gap",
+        "value": 78.4,
+        "rank": 1
+      },
+      {
+        "district": "Betong",
+        "indicator": "Electricity gap",
+        "value": 5.2,
+        "rank": 1
+      },
+      {
+        "district": "Sibu",
+        "indicator": "Piped water gap",
+        "value": 70.2,
+        "rank": 2
+      },
+      {
+        "district": "Sibu",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 2
+      },
+      {
+        "district": "Sarikei",
+        "indicator": "Piped water gap",
+        "value": 61.5,
+        "rank": 3
+      },
+      {
+        "district": "Sarikei",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 3
+      },
+      {
+        "district": "Tanjung Manis",
+        "indicator": "Piped water gap",
+        "value": 55.9,
+        "rank": 4
+      },
+      {
+        "district": "Tanjung Manis",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 4
+      },
+      {
+        "district": "Dalat",
+        "indicator": "Piped water gap",
+        "value": 53.2,
+        "rank": 5
+      },
+      {
+        "district": "Dalat",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 5
+      },
+      {
+        "district": "Subis",
+        "indicator": "Piped water gap",
+        "value": 52.6,
+        "rank": 6
+      },
+      {
+        "district": "Subis",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 6
+      },
+      {
+        "district": "Pitas",
+        "indicator": "Piped water gap",
+        "value": 52.6,
+        "rank": 7
+      },
+      {
+        "district": "Pitas",
+        "indicator": "Electricity gap",
+        "value": 12.0,
+        "rank": 7
+      },
+      {
+        "district": "Lundu",
+        "indicator": "Piped water gap",
+        "value": 52.6,
+        "rank": 8
+      },
+      {
+        "district": "Lundu",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 8
+      },
+      {
+        "district": "Kabong",
+        "indicator": "Piped water gap",
+        "value": 42.7,
+        "rank": 9
+      },
+      {
+        "district": "Kabong",
+        "indicator": "Electricity gap",
+        "value": 15.0,
+        "rank": 9
+      },
+      {
+        "district": "Bachok",
+        "indicator": "Piped water gap",
+        "value": 52.6,
+        "rank": 10
+      },
+      {
+        "district": "Bachok",
+        "indicator": "Electricity gap",
+        "value": 0.0,
+        "rank": 10
+      }
+    ]
+  },
+  "encoding": {
+    "y": {
+      "field": "district",
+      "type": "nominal",
+      "sort": [
+        "Betong",
+        "Sibu",
+        "Sarikei",
+        "Tanjung Manis",
+        "Dalat",
+        "Subis",
+        "Pitas",
+        "Lundu",
+        "Kabong",
+        "Bachok"
+      ],
+      "title": null,
+      "axis": {
+        "labelFontSize": 13,
+        "labelLimit": 160
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 160
+      },
+      "encoding": {
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Gap from full access (percentage points)",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              85
+            ]
+          }
+        },
+        "color": {
+          "field": "indicator",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Piped water gap",
+              "Electricity gap"
+            ],
+            "range": [
+              "#65452C",
+              "#C9A883"
+            ]
+          },
+          "legend": {
+            "title": "Service gap",
+            "orient": "top",
+            "labelFontSize": 13,
+            "titleFontSize": 13
+          }
+        },
+        "shape": {
+          "field": "indicator",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Piped water gap",
+              "Electricity gap"
+            ],
+            "range": [
+              "circle",
+              "square"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "district",
+            "type": "nominal"
+          },
+          {
+            "field": "indicator",
+            "type": "nominal",
+            "title": "Gap type"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Gap (pp)"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.indicator == 'Piped water gap'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#1F2528"
+      },
+      "encoding": {
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              85
+            ]
+          },
+          "title": "Gap from full access (percentage points)"
+        },
+        "text": {
+          "field": "value",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E6DED4",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
+}

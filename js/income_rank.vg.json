@@ -1,82 +1,265 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 520,
-  "height": 420,
-  "title": {
-    "text": "Top 12 Districts by Median Household Income",
-    "subtitle": [
-      "A concentrated group of urban and industrial districts dominates the upper end of the income distribution."
-    ]
+  "width": 820,
+  "height": 360,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
   },
   "data": {
-    "url": "data/master_district_2022_mapready.csv"
+    "values": [
+      {
+        "district": "Sepang",
+        "income": 12608,
+        "rank": 1
+      },
+      {
+        "district": "Ulu Langat",
+        "income": 11210,
+        "rank": 2
+      },
+      {
+        "district": "W.P. Kuala Lumpur",
+        "income": 10234,
+        "rank": 3
+      },
+      {
+        "district": "Gombak",
+        "income": 10180,
+        "rank": 4
+      },
+      {
+        "district": "Kuala Langat",
+        "income": 10093,
+        "rank": 5
+      },
+      {
+        "district": "W.P. Putrajaya",
+        "income": 10056,
+        "rank": 6
+      },
+      {
+        "district": "Petaling",
+        "income": 9618,
+        "rank": 7
+      },
+      {
+        "district": "Bintulu",
+        "income": 8567,
+        "rank": 8
+      },
+      {
+        "district": "Johor Bahru",
+        "income": 8232,
+        "rank": 9
+      },
+      {
+        "district": "Klang",
+        "income": 8203,
+        "rank": 10
+      },
+      {
+        "district": "Ulu Selangor",
+        "income": 7678,
+        "rank": 11
+      },
+      {
+        "district": "Kuala Selangor",
+        "income": 7644,
+        "rank": 12
+      }
+    ]
   },
-  "transform": [
-    {
-      "filter": "isValid(datum.income_median)"
-    },
-    {
-      "window": [
-        {
-          "op": "row_number",
-          "as": "rownum"
-        }
-      ],
-      "sort": [
-        {
-          "field": "income_median",
-          "order": "descending"
-        }
-      ]
-    },
-    {
-      "filter": "datum.rownum <= 12"
-    }
-  ],
   "layer": [
     {
       "mark": {
         "type": "bar",
-        "cornerRadiusEnd": 3
+        "cornerRadiusEnd": 4
       },
       "encoding": {
         "y": {
           "field": "district",
           "type": "nominal",
-          "sort": "-x",
-          "title": null
+          "sort": [
+            "Sepang",
+            "Ulu Langat",
+            "W.P. Kuala Lumpur",
+            "Gombak",
+            "Kuala Langat",
+            "W.P. Putrajaya",
+            "Petaling",
+            "Bintulu",
+            "Johor Bahru",
+            "Klang",
+            "Ulu Selangor",
+            "Kuala Selangor"
+          ],
+          "title": null,
+          "axis": {
+            "labelFontSize": 13,
+            "labelLimit": 200
+          }
         },
         "x": {
-          "field": "income_median",
+          "field": "income",
           "type": "quantitative",
-          "title": "Median household income (RM)"
-        }
+          "title": "Median household income (RM)",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              15000
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.rank <= 3",
+            "value": "#263947"
+          },
+          "value": "#8A9797"
+        },
+        "tooltip": [
+          {
+            "field": "district",
+            "type": "nominal"
+          },
+          {
+            "field": "income",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Income (RM)"
+          }
+        ]
       }
     },
     {
       "mark": {
         "type": "text",
         "align": "left",
-        "baseline": "middle",
-        "dx": 4,
-        "fontSize": 11
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1F2528"
       },
       "encoding": {
         "y": {
           "field": "district",
           "type": "nominal",
-          "sort": "-x"
+          "sort": [
+            "Sepang",
+            "Ulu Langat",
+            "W.P. Kuala Lumpur",
+            "Gombak",
+            "Kuala Langat",
+            "W.P. Putrajaya",
+            "Petaling",
+            "Bintulu",
+            "Johor Bahru",
+            "Klang",
+            "Ulu Selangor",
+            "Kuala Selangor"
+          ]
         },
         "x": {
-          "field": "income_median",
-          "type": "quantitative"
+          "field": "income",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              15000
+            ]
+          }
         },
         "text": {
-          "field": "income_median",
+          "field": "income",
           "type": "quantitative",
           "format": ",.0f"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "income": 8567,
+            "district": "Bintulu",
+            "label": "Only non-Klang Valley in top 12"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": -14,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#A0603D"
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": [
+            "Sepang",
+            "Ulu Langat",
+            "W.P. Kuala Lumpur",
+            "Gombak",
+            "Kuala Langat",
+            "W.P. Putrajaya",
+            "Petaling",
+            "Bintulu",
+            "Johor Bahru",
+            "Klang",
+            "Ulu Selangor",
+            "Kuala Selangor"
+          ]
+        },
+        "x": {
+          "field": "income",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              15000
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E6DED4",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
 }

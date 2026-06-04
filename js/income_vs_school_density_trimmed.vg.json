@@ -1,96 +1,965 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 410,
-  "title": {
-    "text": "Income and School Density by District",
-    "subtitle": [
-      "Extreme school-density outliers above 120 schools per 10,000 residents are trimmed to make the main pattern readable."
-    ]
+  "width": 820,
+  "height": 500,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
   },
-  "data": {
-    "url": "data/master_district_2022_mapready.csv"
-  },
-  "transform": [
-    {
-      "filter": "isValid(datum.income_median) && isValid(datum.schools_per_10000)"
-    },
-    {
-      "filter": "datum.schools_per_10000 <= 120"
-    }
-  ],
   "layer": [
     {
+      "data": {
+        "values": [
+          {
+            "d": "Batu Pahat",
+            "s": "Johor",
+            "i": 6347,
+            "sc": 21.3
+          },
+          {
+            "d": "Johor Bahru",
+            "s": "Johor",
+            "i": 8232,
+            "sc": 9.3
+          },
+          {
+            "d": "Kluang",
+            "s": "Johor",
+            "i": 5204,
+            "sc": 21.7
+          },
+          {
+            "d": "Kota Tinggi",
+            "s": "Johor",
+            "i": 6227,
+            "sc": 28.9
+          },
+          {
+            "d": "Kulai",
+            "s": "Johor",
+            "i": 7460,
+            "sc": 9.6
+          },
+          {
+            "d": "Mersing",
+            "s": "Johor",
+            "i": 4445,
+            "sc": 36.3
+          },
+          {
+            "d": "Muar",
+            "s": "Johor",
+            "i": 5724,
+            "sc": 24.7
+          },
+          {
+            "d": "Pontian",
+            "s": "Johor",
+            "i": 5616,
+            "sc": 34.5
+          },
+          {
+            "d": "Segamat",
+            "s": "Johor",
+            "i": 5318,
+            "sc": 33.3
+          },
+          {
+            "d": "Tangkak",
+            "s": "Johor",
+            "i": 5622,
+            "sc": 29.8
+          },
+          {
+            "d": "Baling",
+            "s": "Kedah",
+            "i": 3400,
+            "sc": 34.5
+          },
+          {
+            "d": "Kota Setar",
+            "s": "Kedah",
+            "i": 4751,
+            "sc": 20.5
+          },
+          {
+            "d": "Kuala Muda",
+            "s": "Kedah",
+            "i": 4200,
+            "sc": 16.3
+          },
+          {
+            "d": "Kubang Pasu",
+            "s": "Kedah",
+            "i": 5201,
+            "sc": 20.1
+          },
+          {
+            "d": "Kulim",
+            "s": "Kedah",
+            "i": 4498,
+            "sc": 13.2
+          },
+          {
+            "d": "Langkawi",
+            "s": "Kedah",
+            "i": 5250,
+            "sc": 18.0
+          },
+          {
+            "d": "Padang Terap",
+            "s": "Kedah",
+            "i": 3902,
+            "sc": 27.1
+          },
+          {
+            "d": "Pendang",
+            "s": "Kedah",
+            "i": 3801,
+            "sc": 30.8
+          },
+          {
+            "d": "Pokok Sena",
+            "s": "Kedah",
+            "i": 4668,
+            "sc": 21.0
+          },
+          {
+            "d": "Sik",
+            "s": "Kedah",
+            "i": 3703,
+            "sc": 23.5
+          },
+          {
+            "d": "Yan",
+            "s": "Kedah",
+            "i": 4080,
+            "sc": 25.9
+          },
+          {
+            "d": "Bachok",
+            "s": "Kelantan",
+            "i": 3625,
+            "sc": 19.7
+          },
+          {
+            "d": "Gua Musang",
+            "s": "Kelantan",
+            "i": 3342,
+            "sc": 25.5
+          },
+          {
+            "d": "Jeli",
+            "s": "Kelantan",
+            "i": 2906,
+            "sc": 22.5
+          },
+          {
+            "d": "Kecil Lojing",
+            "s": "Kelantan",
+            "i": 2630,
+            "sc": 23.1
+          },
+          {
+            "d": "Kota Bharu",
+            "s": "Kelantan",
+            "i": 4330,
+            "sc": 15.4
+          },
+          {
+            "d": "Kuala Krai",
+            "s": "Kelantan",
+            "i": 2763,
+            "sc": 30.3
+          },
+          {
+            "d": "Machang",
+            "s": "Kelantan",
+            "i": 3429,
+            "sc": 20.5
+          },
+          {
+            "d": "Pasir Mas",
+            "s": "Kelantan",
+            "i": 3508,
+            "sc": 20.8
+          },
+          {
+            "d": "Pasir Puteh",
+            "s": "Kelantan",
+            "i": 3453,
+            "sc": 24.1
+          },
+          {
+            "d": "Tanah Merah",
+            "s": "Kelantan",
+            "i": 2991,
+            "sc": 19.5
+          },
+          {
+            "d": "Tumpat",
+            "s": "Kelantan",
+            "i": 3749,
+            "sc": 15.7
+          },
+          {
+            "d": "Alor Gajah",
+            "s": "Melaka",
+            "i": 5611,
+            "sc": 23.4
+          },
+          {
+            "d": "Jasin",
+            "s": "Melaka",
+            "i": 5895,
+            "sc": 33.1
+          },
+          {
+            "d": "Melaka Tengah",
+            "s": "Melaka",
+            "i": 6557,
+            "sc": 13.2
+          },
+          {
+            "d": "Jempol",
+            "s": "Negeri Sembilan",
+            "i": 3830,
+            "sc": 26.3
+          },
+          {
+            "d": "Port Dickson",
+            "s": "Negeri Sembilan",
+            "i": 4805,
+            "sc": 29.1
+          },
+          {
+            "d": "Seremban",
+            "s": "Negeri Sembilan",
+            "i": 6384,
+            "sc": 13.8
+          },
+          {
+            "d": "Tampin",
+            "s": "Negeri Sembilan",
+            "i": 4012,
+            "sc": 34.5
+          },
+          {
+            "d": "Bentong",
+            "s": "Pahang",
+            "i": 4691,
+            "sc": 28.8
+          },
+          {
+            "d": "Bera",
+            "s": "Pahang",
+            "i": 3866,
+            "sc": 30.6
+          },
+          {
+            "d": "Jerantut",
+            "s": "Pahang",
+            "i": 3781,
+            "sc": 39.2
+          },
+          {
+            "d": "Kuantan",
+            "s": "Pahang",
+            "i": 5926,
+            "sc": 6.2
+          },
+          {
+            "d": "Maran",
+            "s": "Pahang",
+            "i": 4319,
+            "sc": 6.0
+          },
+          {
+            "d": "Pekan",
+            "s": "Pahang",
+            "i": 4053,
+            "sc": 34.5
+          },
+          {
+            "d": "Raub",
+            "s": "Pahang",
+            "i": 4375,
+            "sc": 39.2
+          },
+          {
+            "d": "Rompin",
+            "s": "Pahang",
+            "i": 4148,
+            "sc": 32.8
+          },
+          {
+            "d": "Temerloh",
+            "s": "Pahang",
+            "i": 4283,
+            "sc": 21.7
+          },
+          {
+            "d": "Batang Padang",
+            "s": "Perak",
+            "i": 3953,
+            "sc": 27.0
+          },
+          {
+            "d": "Hilir Perak",
+            "s": "Perak",
+            "i": 4199,
+            "sc": 37.3
+          },
+          {
+            "d": "Kerian",
+            "s": "Perak",
+            "i": 3996,
+            "sc": 13.7
+          },
+          {
+            "d": "Kinta",
+            "s": "Perak",
+            "i": 5037,
+            "sc": 6.1
+          },
+          {
+            "d": "Larut Dan Matang",
+            "s": "Perak",
+            "i": 4029,
+            "sc": 24.9
+          },
+          {
+            "d": "Manjung",
+            "s": "Perak",
+            "i": 5135,
+            "sc": 5.9
+          },
+          {
+            "d": "Perlis",
+            "s": "Perlis",
+            "i": 4713,
+            "sc": 15.4
+          },
+          {
+            "d": "Barat Daya",
+            "s": "Pulau Pinang",
+            "i": 7247,
+            "sc": 26.3
+          },
+          {
+            "d": "Seberang Perai Selatan",
+            "s": "Pulau Pinang",
+            "i": 6231,
+            "sc": 16.7
+          },
+          {
+            "d": "Seberang Perai Tengah",
+            "s": "Pulau Pinang",
+            "i": 6220,
+            "sc": 7.9
+          },
+          {
+            "d": "Seberang Perai Utara",
+            "s": "Pulau Pinang",
+            "i": 6103,
+            "sc": 15.1
+          },
+          {
+            "d": "Timur Laut",
+            "s": "Pulau Pinang",
+            "i": 6714,
+            "sc": 10.3
+          },
+          {
+            "d": "Keningau",
+            "s": "Sabah",
+            "i": 4502,
+            "sc": 32.4
+          },
+          {
+            "d": "Kinabatangan",
+            "s": "Sabah",
+            "i": 4162,
+            "sc": 15.2
+          },
+          {
+            "d": "Kota Belud",
+            "s": "Sabah",
+            "i": 3429,
+            "sc": 36.6
+          },
+          {
+            "d": "Kota Kinabalu",
+            "s": "Sabah",
+            "i": 5957,
+            "sc": 9.9
+          },
+          {
+            "d": "Kota Marudu",
+            "s": "Sabah",
+            "i": 2677,
+            "sc": 33.6
+          },
+          {
+            "d": "Kunak",
+            "s": "Sabah",
+            "i": 4480,
+            "sc": 15.9
+          },
+          {
+            "d": "Lahad Datu",
+            "s": "Sabah",
+            "i": 4457,
+            "sc": 14.0
+          },
+          {
+            "d": "Papar",
+            "s": "Sabah",
+            "i": 4871,
+            "sc": 23.7
+          },
+          {
+            "d": "Penampang",
+            "s": "Sabah",
+            "i": 6265,
+            "sc": 12.2
+          },
+          {
+            "d": "Putatan",
+            "s": "Sabah",
+            "i": 5699,
+            "sc": 0.7
+          },
+          {
+            "d": "Sandakan",
+            "s": "Sabah",
+            "i": 4828,
+            "sc": 11.9
+          },
+          {
+            "d": "Semporna",
+            "s": "Sabah",
+            "i": 4093,
+            "sc": 18.1
+          },
+          {
+            "d": "Tawau",
+            "s": "Sabah",
+            "i": 4783,
+            "sc": 13.4
+          },
+          {
+            "d": "Telupid",
+            "s": "Sabah",
+            "i": 3953,
+            "sc": 15.9
+          },
+          {
+            "d": "Tuaran",
+            "s": "Sabah",
+            "i": 3921,
+            "sc": 37.2
+          },
+          {
+            "d": "Belaga",
+            "s": "Sarawak",
+            "i": 3587,
+            "sc": 37.6
+          },
+          {
+            "d": "Bintulu",
+            "s": "Sarawak",
+            "i": 8567,
+            "sc": 10.6
+          },
+          {
+            "d": "Daro",
+            "s": "Sarawak",
+            "i": 3373,
+            "sc": 12.8
+          },
+          {
+            "d": "Kuching",
+            "s": "Sarawak",
+            "i": 5968,
+            "sc": 3.9
+          },
+          {
+            "d": "Matu",
+            "s": "Sarawak",
+            "i": 3354,
+            "sc": 3.0
+          },
+          {
+            "d": "Miri",
+            "s": "Sarawak",
+            "i": 6449,
+            "sc": 7.8
+          },
+          {
+            "d": "Pusa",
+            "s": "Sarawak",
+            "i": 3124,
+            "sc": 25.4
+          },
+          {
+            "d": "Samarahan",
+            "s": "Sarawak",
+            "i": 5953,
+            "sc": 1.7
+          },
+          {
+            "d": "Serian",
+            "s": "Sarawak",
+            "i": 4074,
+            "sc": 29.1
+          },
+          {
+            "d": "Sibu",
+            "s": "Sarawak",
+            "i": 5248,
+            "sc": 7.2
+          },
+          {
+            "d": "Simunjan",
+            "s": "Sarawak",
+            "i": 3196,
+            "sc": 28.8
+          },
+          {
+            "d": "Gombak",
+            "s": "Selangor",
+            "i": 10180,
+            "sc": 4.0
+          },
+          {
+            "d": "Klang",
+            "s": "Selangor",
+            "i": 8203,
+            "sc": 2.8
+          },
+          {
+            "d": "Kuala Langat",
+            "s": "Selangor",
+            "i": 10093,
+            "sc": 9.2
+          },
+          {
+            "d": "Kuala Selangor",
+            "s": "Selangor",
+            "i": 7644,
+            "sc": 4.7
+          },
+          {
+            "d": "Petaling",
+            "s": "Selangor",
+            "i": 9618,
+            "sc": 2.0
+          },
+          {
+            "d": "Sepang",
+            "s": "Selangor",
+            "i": 12608,
+            "sc": 11.9
+          },
+          {
+            "d": "Ulu Langat",
+            "s": "Selangor",
+            "i": 11210,
+            "sc": 3.0
+          },
+          {
+            "d": "Ulu Selangor",
+            "s": "Selangor",
+            "i": 7678,
+            "sc": 11.0
+          },
+          {
+            "d": "Besut",
+            "s": "Terengganu",
+            "i": 4743,
+            "sc": 29.4
+          },
+          {
+            "d": "Dungun",
+            "s": "Terengganu",
+            "i": 6356,
+            "sc": 15.5
+          },
+          {
+            "d": "Kuala Nerus",
+            "s": "Terengganu",
+            "i": 6800,
+            "sc": 10.8
+          },
+          {
+            "d": "Kuala Terengganu",
+            "s": "Terengganu",
+            "i": 5872,
+            "sc": 6.6
+          }
+        ]
+      },
       "mark": {
         "type": "point",
         "filled": true,
-        "size": 65,
-        "opacity": 0.72
+        "size": 55,
+        "opacity": 0.5,
+        "color": "#8A8F8C"
       },
       "encoding": {
         "x": {
-          "field": "schools_per_10000",
+          "field": "sc",
           "type": "quantitative",
-          "title": "Schools per 10,000 residents"
+          "title": "Schools per 10,000 residents",
+          "scale": {
+            "domain": [
+              0,
+              42
+            ]
+          }
         },
         "y": {
-          "field": "income_median",
+          "field": "i",
           "type": "quantitative",
-          "title": "Median household income (RM)"
-        },
-        "color": {
-          "field": "state",
-          "type": "nominal",
-          "legend": null
+          "title": "Median household income (RM)",
+          "scale": {
+            "domain": [
+              2500,
+              13500
+            ]
+          }
         },
         "tooltip": [
           {
-            "field": "state",
-            "type": "nominal",
-            "title": "State"
-          },
-          {
-            "field": "district",
+            "field": "d",
             "type": "nominal",
             "title": "District"
           },
           {
-            "field": "schools_per_10000",
-            "type": "quantitative",
-            "title": "Schools per 10,000",
-            "format": ".1f"
+            "field": "s",
+            "type": "nominal",
+            "title": "State"
           },
           {
-            "field": "income_median",
+            "field": "i",
             "type": "quantitative",
-            "title": "Median income",
-            "format": ",.0f"
+            "format": ",.0f",
+            "title": "Income (RM)"
+          },
+          {
+            "field": "sc",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Schools / 10k"
           }
         ]
       }
     },
     {
-      "transform": [
-        {
-          "regression": "income_median",
-          "on": "schools_per_10000"
-        }
-      ],
+      "data": {
+        "values": [
+          {}
+        ]
+      },
       "mark": {
-        "type": "line",
-        "color": "#111827",
-        "strokeWidth": 2.2
+        "type": "rule",
+        "color": "#6F6A60",
+        "strokeWidth": 1.8,
+        "strokeDash": [
+          6,
+          4
+        ]
       },
       "encoding": {
         "x": {
-          "field": "schools_per_10000",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "income_median",
+          "datum": 19.9,
           "type": "quantitative"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#6F6A60",
+        "strokeWidth": 1.8,
+        "strokeDash": [
+          6,
+          4
+        ]
+      },
+      "encoding": {
+        "y": {
+          "datum": 4702,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 0.5,
+            "y": 13200,
+            "label": "High income"
+          },
+          {
+            "x": 0.5,
+            "y": 12600,
+            "label": "Low school density"
+          },
+          {
+            "x": 21.5,
+            "y": 13200,
+            "label": "High income"
+          },
+          {
+            "x": 21.5,
+            "y": 12600,
+            "label": "High school density"
+          },
+          {
+            "x": 0.5,
+            "y": 3100,
+            "label": "Low income"
+          },
+          {
+            "x": 0.5,
+            "y": 2700,
+            "label": "Low school density"
+          },
+          {
+            "x": 21.5,
+            "y": 3100,
+            "label": "Low income"
+          },
+          {
+            "x": 21.5,
+            "y": 2700,
+            "label": "High school density"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "opacity": 0.6,
+        "color": "#7A746C",
+        "dy": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "sc": 11.9,
+            "i": 12608,
+            "label": "Sepang"
+          },
+          {
+            "sc": 3.0,
+            "i": 11210,
+            "label": "Ulu Langat"
+          },
+          {
+            "sc": 2.0,
+            "i": 9618,
+            "label": "Petaling"
+          },
+          {
+            "sc": 39.2,
+            "i": 3781,
+            "label": "Jerantut"
+          },
+          {
+            "sc": 37.6,
+            "i": 3587,
+            "label": "Belaga"
+          },
+          {
+            "sc": 21.3,
+            "i": 6347,
+            "label": "Batu Pahat"
+          }
+        ]
+      },
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100,
+        "color": "#A05A35",
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "sc",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "i",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "sc": 11.9,
+            "i": 12608,
+            "label": "Sepang",
+            "ax": "left",
+            "dx": -8
+          },
+          {
+            "sc": 3.0,
+            "i": 11210,
+            "label": "Ulu Langat",
+            "ax": "left",
+            "dx": -8
+          },
+          {
+            "sc": 2.0,
+            "i": 9618,
+            "label": "Petaling",
+            "ax": "left",
+            "dx": -8
+          },
+          {
+            "sc": 39.2,
+            "i": 3781,
+            "label": "Jerantut",
+            "ax": "right",
+            "dx": 8
+          },
+          {
+            "sc": 37.6,
+            "i": 3587,
+            "label": "Belaga",
+            "ax": "right",
+            "dx": 8
+          },
+          {
+            "sc": 21.3,
+            "i": 6347,
+            "label": "Batu Pahat",
+            "ax": "right",
+            "dx": 8
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 800,
+        "color": "#A0603D",
+        "dy": -10
+      },
+      "encoding": {
+        "x": {
+          "field": "sc",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "i",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "align": {
+          "field": "ax"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 20.5,
+            "y": 13200,
+            "label": "\u2190 Median school density (19.9)"
+          },
+          {
+            "x": 0.3,
+            "y": 4900,
+            "label": "Median income (RM 4,702) \u2192"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#8B7B6A",
+        "align": "left",
+        "dy": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        },
+        "align": {
+          "value": "left"
+        }
+      }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E0D8CE",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "gridOpacity": 0.15
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
 }

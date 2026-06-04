@@ -1,63 +1,25 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 520,
-  "title": "School Density by District, Malaysia (2022)",
-  "projection": {
-    "type": "mercator"
-  },
-  "data": {
-    "url": "js/malaysia_districts.topojson",
-    "format": {
-      "type": "topojson",
-      "feature": "mys_admin2"
-    }
-  },
-  "transform": [
+  "width": 860,
+  "height": 440,
+  "projection": {"type": "mercator"},
+  "layer": [
     {
-      "lookup": "properties.adm2_name",
-      "from": {
-        "data": {
-          "url": "data/master_district_2022_mapready.csv"
+      "data": {"url":"js/malaysia_districts.topojson","format":{"type":"topojson","feature":"mys_admin2"}},
+      "transform": [
+        {"lookup":"properties.adm2_name","from":{"data":{"url":"data/master_district_2022_mapready.csv"},"key":"join_district","fields":["state","district","schools_per_10000"]}},
+        {"calculate":"datum.schools_per_10000 > 120 ? 120 : datum.schools_per_10000","as":"schools_capped"}
+      ],
+      "mark": {"type":"geoshape","stroke":"#FBF8F2","strokeWidth":0.6},
+      "encoding": {
+        "color": {
+          "field":"schools_capped","type":"quantitative","title":"Schools / 10k",
+          "scale":{"domain":[0,8,16,40,120],"range":["#E2EFE9","#A8D0C4","#4B908A","#2A6E68","#1F5F62"]},
+          "legend":{"title":"Schools / 10k","gradientLength":180,"orient":"right","labelExpr":"datum.value==120?'120+':datum.label"}
         },
-        "key": "join_district",
-        "fields": [
-          "state",
-          "district",
-          "schools_per_10000"
-        ]
+        "tooltip":[{"field":"district","type":"nominal","title":"District"},{"field":"state","type":"nominal","title":"State"},{"field":"schools_per_10000","type":"quantitative","title":"Schools / 10k","format":",.1f"}]
       }
     }
   ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "white",
-    "strokeWidth": 0.5
-  },
-  "encoding": {
-    "color": {
-      "field": "schools_per_10000",
-      "type": "quantitative",
-      "title": "Schools per 10,000 residents",
-      "scale": {
-        "scheme": "teals",
-        "domain": [
-          0,
-          120
-        ]
-      }
-    },
-    "tooltip": [
-      {
-        "field": "district",
-        "type": "nominal",
-        "title": "District"
-      },
-      {
-        "field": "schools_per_10000",
-        "type": "quantitative",
-        "title": "Schools per 10,000"
-      }
-    ]
-  }
+  "config":{"view":{"stroke":null},"background":null,"font":"Inter","legend":{"labelFont":"Inter","titleFont":"Inter","labelColor":"#6B6F72","titleColor":"#1F2528","orient":"right"}}
 }

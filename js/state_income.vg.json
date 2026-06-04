@@ -1,60 +1,307 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 520,
+  "width": 820,
   "height": 420,
-  "title": {
-    "text": "Average District Income by State",
-    "subtitle": [
-      "Averaging across districts reduces the influence of a few exceptional high-income districts."
-    ]
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
   },
   "data": {
-    "url": "data/state_summary_2022.csv"
+    "values": [
+      {
+        "state": "W.P. Kuala Lumpur",
+        "income": 10234,
+        "rank": 1
+      },
+      {
+        "state": "W.P. Putrajaya",
+        "income": 10056,
+        "rank": 2
+      },
+      {
+        "state": "Selangor",
+        "income": 9196,
+        "rank": 3
+      },
+      {
+        "state": "W.P. Labuan",
+        "income": 6904,
+        "rank": 4
+      },
+      {
+        "state": "Pulau Pinang",
+        "income": 6503,
+        "rank": 5
+      },
+      {
+        "state": "Melaka",
+        "income": 6021,
+        "rank": 6
+      },
+      {
+        "state": "Johor",
+        "income": 6020,
+        "rank": 7
+      },
+      {
+        "state": "Terengganu",
+        "income": 5724,
+        "rank": 8
+      },
+      {
+        "state": "Perlis",
+        "income": 4713,
+        "rank": 9
+      },
+      {
+        "state": "Pahang",
+        "income": 4434,
+        "rank": 10
+      },
+      {
+        "state": "Negeri Sembilan",
+        "income": 4399,
+        "rank": 11
+      },
+      {
+        "state": "Kedah",
+        "income": 4281,
+        "rank": 12
+      },
+      {
+        "state": "Perak",
+        "income": 4254,
+        "rank": 13
+      },
+      {
+        "state": "Sabah",
+        "income": 4121,
+        "rank": 14
+      },
+      {
+        "state": "Sarawak",
+        "income": 3983,
+        "rank": 15
+      },
+      {
+        "state": "Kelantan",
+        "income": 3339,
+        "rank": 16
+      }
+    ]
   },
   "layer": [
     {
       "mark": {
-        "type": "bar",
-        "cornerRadiusEnd": 3
+        "type": "rule",
+        "strokeWidth": 2
       },
       "encoding": {
         "y": {
           "field": "state",
           "type": "nominal",
-          "sort": "-x",
+          "sort": {
+            "field": "income",
+            "order": "descending"
+          },
+          "title": null,
+          "axis": {
+            "labelFontSize": 13,
+            "labelLimit": 200
+          }
+        },
+        "x": {
+          "field": "income",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              12500
+            ]
+          },
+          "title": "Average district median income (RM)"
+        },
+        "x2": {
+          "datum": 0
+        },
+        "color": {
+          "condition": {
+            "test": "datum.rank<=3",
+            "value": "#687B83"
+          },
+          "value": "#C8D0D0"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 130
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "income",
+            "order": "descending"
+          },
           "title": null
         },
         "x": {
-          "field": "median_income",
+          "field": "income",
           "type": "quantitative",
-          "title": "Average district median income (RM)"
-        }
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              12500
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.rank<=3",
+            "value": "#263947"
+          },
+          "value": "#687B83"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal"
+          },
+          {
+            "field": "income",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Income (RM)"
+          }
+        ]
       }
     },
     {
       "mark": {
         "type": "text",
         "align": "left",
-        "baseline": "middle",
-        "dx": 4,
-        "fontSize": 11
+        "dx": 12,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1F2528"
       },
       "encoding": {
         "y": {
           "field": "state",
           "type": "nominal",
-          "sort": "-x"
+          "sort": {
+            "field": "income",
+            "order": "descending"
+          }
         },
         "x": {
-          "field": "median_income",
-          "type": "quantitative"
+          "field": "income",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              12500
+            ]
+          }
         },
         "text": {
-          "field": "median_income",
+          "field": "income",
           "type": "quantitative",
           "format": ",.0f"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "income": 3339,
+            "state": "Kelantan",
+            "label": "Lowest in Malaysia"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 55,
+        "fontSize": 11,
+        "fontWeight": 800,
+        "color": "#A0603D"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "W.P. Kuala Lumpur",
+            "W.P. Putrajaya",
+            "Selangor",
+            "W.P. Labuan",
+            "Pulau Pinang",
+            "Melaka",
+            "Johor",
+            "Terengganu",
+            "Perlis",
+            "Pahang",
+            "Negeri Sembilan",
+            "Kedah",
+            "Perak",
+            "Sabah",
+            "Sarawak",
+            "Kelantan"
+          ]
+        },
+        "x": {
+          "field": "income",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              12500
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E6DED4",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
 }

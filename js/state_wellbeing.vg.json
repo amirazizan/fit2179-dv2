@@ -1,60 +1,352 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 520,
-  "height": 420,
-  "title": {
-    "text": "Composite Wellbeing and Access Score by State",
-    "subtitle": [
-      "The composite score summarises income, utilities, and school density to show broad state-level positioning."
-    ]
+  "width": 820,
+  "height": 390,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
   },
   "data": {
-    "url": "data/state_summary_2022.csv"
+    "values": [
+      {
+        "state": "Selangor",
+        "score": 67.3,
+        "diff": 16.5,
+        "rank": 1
+      },
+      {
+        "state": "Terengganu",
+        "score": 55.5,
+        "diff": 4.7,
+        "rank": 2
+      },
+      {
+        "state": "Pulau Pinang",
+        "score": 55.2,
+        "diff": 4.4,
+        "rank": 3
+      },
+      {
+        "state": "Melaka",
+        "score": 54.9,
+        "diff": 4.1,
+        "rank": 4
+      },
+      {
+        "state": "Johor",
+        "score": 54.8,
+        "diff": 4.0,
+        "rank": 5
+      },
+      {
+        "state": "Perak",
+        "score": 50.3,
+        "diff": -0.5,
+        "rank": 6
+      },
+      {
+        "state": "Negeri Sembilan",
+        "score": 50.1,
+        "diff": -0.7,
+        "rank": 7
+      },
+      {
+        "state": "Pahang",
+        "score": 48.7,
+        "diff": -2.1,
+        "rank": 8
+      },
+      {
+        "state": "Perlis",
+        "score": 47.9,
+        "diff": -2.9,
+        "rank": 9
+      },
+      {
+        "state": "Kedah",
+        "score": 47.6,
+        "diff": -3.2,
+        "rank": 10
+      },
+      {
+        "state": "Sarawak",
+        "score": 47.3,
+        "diff": -3.5,
+        "rank": 11
+      },
+      {
+        "state": "Sabah",
+        "score": 44.0,
+        "diff": -6.8,
+        "rank": 12
+      },
+      {
+        "state": "Kelantan",
+        "score": 36.0,
+        "diff": -14.8,
+        "rank": 13
+      }
+    ]
   },
   "layer": [
     {
       "mark": {
-        "type": "bar",
-        "cornerRadiusEnd": 3
+        "type": "rule",
+        "color": "#C4BAB0",
+        "strokeWidth": 1.5,
+        "strokeDash": [
+          4,
+          3
+        ]
       },
       "encoding": {
-        "y": {
-          "field": "state",
-          "type": "nominal",
-          "sort": "-x",
-          "title": null
-        },
         "x": {
-          "field": "wellbeing_score",
-          "type": "quantitative",
-          "title": "Composite score (0\u2013100)"
+          "datum": 0,
+          "type": "quantitative"
         }
       }
     },
     {
       "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 4,
-        "fontSize": 11
+        "type": "bar",
+        "cornerRadiusEnd": 4
       },
       "encoding": {
         "y": {
           "field": "state",
           "type": "nominal",
-          "sort": "-x"
+          "sort": {
+            "field": "score",
+            "order": "descending"
+          },
+          "title": null,
+          "axis": {
+            "labelFontSize": 13,
+            "labelLimit": 200
+          }
         },
         "x": {
-          "field": "wellbeing_score",
-          "type": "quantitative"
+          "field": "diff",
+          "type": "quantitative",
+          "title": "Points above or below national average wellbeing score",
+          "scale": {
+            "domain": [
+              -20,
+              22
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.diff > 0",
+            "value": "#5E4B8B"
+          },
+          "value": "#C4B8E0"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal"
+          },
+          {
+            "field": "score",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Wellbeing score"
+          },
+          {
+            "field": "diff",
+            "type": "quantitative",
+            "format": "+.1f",
+            "title": "vs national avg"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "score",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "diff",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -20,
+              22
+            ]
+          }
         },
         "text": {
-          "field": "wellbeing_score",
+          "field": "score",
           "type": "quantitative",
           "format": ".1f"
+        },
+        "align": {
+          "condition": {
+            "test": "datum.diff >= 0",
+            "value": "left"
+          },
+          "value": "right"
+        },
+        "dx": {
+          "condition": {
+            "test": "datum.diff >= 0",
+            "value": 6
+          },
+          "value": -6
+        },
+        "color": {
+          "value": "#1F2528"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "diff": 16.5,
+            "state": "Selangor",
+            "label": "Top state"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": -13,
+        "fontSize": 11,
+        "fontWeight": 800,
+        "color": "#A0603D"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "Selangor",
+            "Terengganu",
+            "Pulau Pinang",
+            "Melaka",
+            "Johor",
+            "Perak",
+            "Negeri Sembilan",
+            "Pahang",
+            "Perlis",
+            "Kedah",
+            "Sarawak",
+            "Sabah",
+            "Kelantan"
+          ]
+        },
+        "x": {
+          "field": "diff",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -20,
+              22
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "diff": -14.8,
+            "state": "Kelantan",
+            "label": "14.8 pts below average"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": -13,
+        "fontSize": 11,
+        "fontWeight": 800,
+        "color": "#A0603D"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "Selangor",
+            "Terengganu",
+            "Pulau Pinang",
+            "Melaka",
+            "Johor",
+            "Perak",
+            "Negeri Sembilan",
+            "Pahang",
+            "Perlis",
+            "Kedah",
+            "Sarawak",
+            "Sabah",
+            "Kelantan"
+          ]
+        },
+        "x": {
+          "field": "diff",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -20,
+              22
+            ]
+          }
+        },
+        "text": {
+          "field": "label"
         }
       }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E6DED4",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
 }

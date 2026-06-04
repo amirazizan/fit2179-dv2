@@ -1,82 +1,211 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 520,
-  "height": 420,
-  "title": {
-    "text": "Districts with Unusually High School Density",
-    "subtitle": [
-      "These districts would dominate an unfiltered school-density chart and distort broader comparisons."
-    ]
+  "width": 820,
+  "height": 300,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
   },
   "data": {
-    "url": "data/master_district_2022_mapready.csv"
+    "values": [
+      {
+        "district": "Tanjung Manis",
+        "state": "Sarawak",
+        "sch": 1006.3,
+        "rank": 1
+      },
+      {
+        "district": "Telang Usan",
+        "state": "Sarawak",
+        "sch": 782.2,
+        "rank": 2
+      },
+      {
+        "district": "Song",
+        "state": "Sarawak",
+        "sch": 630.0,
+        "rank": 3
+      },
+      {
+        "district": "Kanowit",
+        "state": "Sarawak",
+        "sch": 460.2,
+        "rank": 4
+      },
+      {
+        "district": "Bukit Mabong",
+        "state": "Sarawak",
+        "sch": 239.4,
+        "rank": 5
+      },
+      {
+        "district": "Saratok",
+        "state": "Sarawak",
+        "sch": 222.1,
+        "rank": 6
+      },
+      {
+        "district": "Tebedu",
+        "state": "Sarawak",
+        "sch": 216.2,
+        "rank": 7
+      },
+      {
+        "district": "Maradong",
+        "state": "Sarawak",
+        "sch": 203.4,
+        "rank": 8
+      },
+      {
+        "district": "Pakan",
+        "state": "Sarawak",
+        "sch": 191.7,
+        "rank": 9
+      },
+      {
+        "district": "Sarikei",
+        "state": "Sarawak",
+        "sch": 181.5,
+        "rank": 10
+      }
+    ]
   },
-  "transform": [
-    {
-      "filter": "isValid(datum.schools_per_10000)"
-    },
-    {
-      "window": [
-        {
-          "op": "row_number",
-          "as": "rownum"
-        }
-      ],
-      "sort": [
-        {
-          "field": "schools_per_10000",
-          "order": "descending"
-        }
-      ]
-    },
-    {
-      "filter": "datum.rownum <= 10"
-    }
-  ],
   "layer": [
     {
       "mark": {
         "type": "bar",
-        "cornerRadiusEnd": 3
+        "cornerRadiusEnd": 4
       },
       "encoding": {
         "y": {
           "field": "district",
           "type": "nominal",
-          "sort": "-x",
-          "title": null
+          "sort": [
+            "Tanjung Manis",
+            "Telang Usan",
+            "Song",
+            "Kanowit",
+            "Bukit Mabong",
+            "Saratok",
+            "Tebedu",
+            "Maradong",
+            "Pakan",
+            "Sarikei"
+          ],
+          "title": null,
+          "axis": {
+            "labelFontSize": 13,
+            "labelLimit": 190
+          }
         },
         "x": {
-          "field": "schools_per_10000",
+          "field": "sch",
           "type": "quantitative",
-          "title": "Schools per 10,000 residents"
-        }
+          "title": "Schools per 10,000 residents",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              1100
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.rank <= 3",
+            "value": "#1F5F62"
+          },
+          "value": "#83B8AD"
+        },
+        "tooltip": [
+          {
+            "field": "district",
+            "type": "nominal"
+          },
+          {
+            "field": "state",
+            "type": "nominal"
+          },
+          {
+            "field": "sch",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Schools / 10k"
+          }
+        ]
       }
     },
     {
       "mark": {
         "type": "text",
         "align": "left",
-        "baseline": "middle",
-        "dx": 4,
-        "fontSize": 11
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#1F2528"
       },
       "encoding": {
         "y": {
           "field": "district",
           "type": "nominal",
-          "sort": "-x"
+          "sort": [
+            "Tanjung Manis",
+            "Telang Usan",
+            "Song",
+            "Kanowit",
+            "Bukit Mabong",
+            "Saratok",
+            "Tebedu",
+            "Maradong",
+            "Pakan",
+            "Sarikei"
+          ]
         },
         "x": {
-          "field": "schools_per_10000",
-          "type": "quantitative"
+          "field": "sch",
+          "type": "quantitative",
+          "scale": {
+            "zero": true,
+            "domain": [
+              0,
+              1100
+            ]
+          }
         },
         "text": {
-          "field": "schools_per_10000",
+          "field": "sch",
           "type": "quantitative",
           "format": ".1f"
         }
       }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E6DED4",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
 }

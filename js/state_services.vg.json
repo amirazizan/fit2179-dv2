@@ -1,0 +1,298 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 820,
+  "height": 420,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
+  },
+  "data": {
+    "values": [
+      {
+        "state": "Melaka",
+        "service": "Piped water",
+        "value": 100.0
+      },
+      {
+        "state": "Perlis",
+        "service": "Piped water",
+        "value": 100.0
+      },
+      {
+        "state": "Kedah",
+        "service": "Piped water",
+        "value": 99.6
+      },
+      {
+        "state": "Negeri Sembilan",
+        "service": "Piped water",
+        "value": 99.3
+      },
+      {
+        "state": "Terengganu",
+        "service": "Piped water",
+        "value": 99.2
+      },
+      {
+        "state": "Selangor",
+        "service": "Piped water",
+        "value": 99.2
+      },
+      {
+        "state": "Perak",
+        "service": "Piped water",
+        "value": 98.9
+      },
+      {
+        "state": "Johor",
+        "service": "Piped water",
+        "value": 98.2
+      },
+      {
+        "state": "Pulau Pinang",
+        "service": "Piped water",
+        "value": 97.9
+      },
+      {
+        "state": "Pahang",
+        "service": "Piped water",
+        "value": 97.0
+      },
+      {
+        "state": "Sabah",
+        "service": "Piped water",
+        "value": 82.2
+      },
+      {
+        "state": "Kelantan",
+        "service": "Piped water",
+        "value": 72.9
+      },
+      {
+        "state": "Sarawak",
+        "service": "Piped water",
+        "value": 76.8
+      },
+      {
+        "state": "Melaka",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Perlis",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Kedah",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Negeri Sembilan",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Terengganu",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Selangor",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Perak",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Johor",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Pulau Pinang",
+        "service": "Electricity",
+        "value": 99.9
+      },
+      {
+        "state": "Pahang",
+        "service": "Electricity",
+        "value": 99.2
+      },
+      {
+        "state": "Sabah",
+        "service": "Electricity",
+        "value": 98.1
+      },
+      {
+        "state": "Kelantan",
+        "service": "Electricity",
+        "value": 100.0
+      },
+      {
+        "state": "Sarawak",
+        "service": "Electricity",
+        "value": 94.8
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "Melaka",
+            "Perlis",
+            "Kedah",
+            "Negeri Sembilan",
+            "Terengganu",
+            "Selangor",
+            "Perak",
+            "Johor",
+            "Pulau Pinang",
+            "Pahang",
+            "Sabah",
+            "Kelantan",
+            "Sarawak"
+          ],
+          "title": null,
+          "axis": {
+            "labelFontSize": 13,
+            "labelLimit": 180
+          }
+        },
+        "x": {
+          "field": "service",
+          "type": "nominal",
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelFontWeight": 700,
+            "labelFontSize": 14
+          }
+        },
+        "color": {
+          "field": "value",
+          "type": "quantitative",
+          "title": "Access (%)",
+          "scale": {
+            "domain": [
+              60,
+              100
+            ],
+            "range": [
+              "#FAF3EA",
+              "#EDD9B8",
+              "#D4B896",
+              "#B8905A",
+              "#9A7040"
+            ]
+          },
+          "legend": {
+            "gradientLength": 200,
+            "title": "Access (%)",
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal"
+          },
+          {
+            "field": "service",
+            "type": "nominal",
+            "title": "Service"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Access (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "baseline": "middle"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": [
+            "Melaka",
+            "Perlis",
+            "Kedah",
+            "Negeri Sembilan",
+            "Terengganu",
+            "Selangor",
+            "Perak",
+            "Johor",
+            "Pulau Pinang",
+            "Pahang",
+            "Sabah",
+            "Kelantan",
+            "Sarawak"
+          ]
+        },
+        "x": {
+          "field": "service",
+          "type": "nominal"
+        },
+        "text": {
+          "field": "value",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.value < 88",
+            "value": "#3A2010"
+          },
+          "value": "#FBF8F2"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "labelColor": "#6B6F72"
+    },
+    "legend": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#1F2528"
+    },
+    "text": {
+      "font": "Inter"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
+}

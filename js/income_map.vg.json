@@ -1,69 +1,22 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 520,
-  "title": "Median Household Income by District, Malaysia (2022)",
-  "projection": {
-    "type": "mercator"
-  },
-  "data": {
-    "url": "js/malaysia_districts.topojson",
-    "format": {
-      "type": "topojson",
-      "feature": "mys_admin2"
-    }
-  },
-  "transform": [
+  "width": 860,
+  "height": 440,
+  "projection": {"type": "mercator"},
+  "layer": [
     {
-      "lookup": "properties.adm2_name",
-      "from": {
-        "data": {
-          "url": "data/master_district_2022_mapready.csv"
+      "data": {"url":"js/malaysia_districts.topojson","format":{"type":"topojson","feature":"mys_admin2"}},
+      "transform": [{"lookup":"properties.adm2_name","from":{"data":{"url":"data/master_district_2022_mapready.csv"},"key":"join_district","fields":["state","district","income_median"]}}],
+      "mark": {"type":"geoshape","stroke":"#FBF8F2","strokeWidth":0.6},
+      "encoding": {
+        "color": {
+          "field":"income_median","type":"quantitative","title":"Income (RM)",
+          "scale":{"domain":[3000,5000,7000,9000,12608],"range":["#D8E0DC","#9AADB5","#5E7E8A","#3A5E70","#1A3347"]},
+          "legend":{"title":"Income (RM)","gradientLength":180,"orient":"right","labelExpr":"datum.value==3000?'< 3,000':format(datum.value,',.0f')"}
         },
-        "key": "join_district",
-        "fields": [
-          "state",
-          "district",
-          "income_median"
-        ]
+        "tooltip":[{"field":"district","type":"nominal","title":"District"},{"field":"state","type":"nominal","title":"State"},{"field":"income_median","type":"quantitative","title":"Income (RM)","format":",.0f"}]
       }
     }
   ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "white",
-    "strokeWidth": 0.5
-  },
-  "encoding": {
-    "color": {
-      "field": "income_median",
-      "type": "quantitative",
-      "title": "Median household income (RM)",
-      "scale": {
-        "scheme": "blues"
-      }
-    },
-    "tooltip": [
-      {
-        "field": "properties.adm1_name",
-        "type": "nominal",
-        "title": "Boundary state"
-      },
-      {
-        "field": "properties.adm2_name",
-        "type": "nominal",
-        "title": "Boundary district"
-      },
-      {
-        "field": "district",
-        "type": "nominal",
-        "title": "Matched district"
-      },
-      {
-        "field": "income_median",
-        "type": "quantitative",
-        "title": "Median income"
-      }
-    ]
-  }
+  "config":{"view":{"stroke":null},"background":null,"font":"Inter","legend":{"labelFont":"Inter","titleFont":"Inter","labelColor":"#6B6F72","titleColor":"#1F2528","orient":"right"}}
 }

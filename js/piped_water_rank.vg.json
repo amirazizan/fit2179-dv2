@@ -1,88 +1,284 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 520,
-  "height": 420,
-  "title": {
-    "text": "Bottom 12 Districts by Piped Water Access",
-    "subtitle": [
-      "Piped water shows clearer district-level variation than sanitation in the 2022 amenities data."
-    ]
+  "width": 820,
+  "height": 260,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
+  },
+  "padding": {
+    "left": 10,
+    "right": 10,
+    "top": 10,
+    "bottom": 10
   },
   "data": {
-    "url": "data/master_district_2022_mapready.csv"
+    "values": [
+      {
+        "district": "Betong",
+        "state": "Sarawak",
+        "pw": 21.6,
+        "rank": 1,
+        "col": 0,
+        "row": 0,
+        "rank_label": "#1",
+        "pw_label": "21.6%"
+      },
+      {
+        "district": "Sibu",
+        "state": "Sarawak",
+        "pw": 29.8,
+        "rank": 2,
+        "col": 1,
+        "row": 0,
+        "rank_label": "#2",
+        "pw_label": "29.8%"
+      },
+      {
+        "district": "Sarikei",
+        "state": "Sarawak",
+        "pw": 38.5,
+        "rank": 3,
+        "col": 2,
+        "row": 0,
+        "rank_label": "#3",
+        "pw_label": "38.5%"
+      },
+      {
+        "district": "Tanjung Manis",
+        "state": "Sarawak",
+        "pw": 44.1,
+        "rank": 4,
+        "col": 3,
+        "row": 0,
+        "rank_label": "#4",
+        "pw_label": "44.1%"
+      },
+      {
+        "district": "Dalat",
+        "state": "Sarawak",
+        "pw": 46.8,
+        "rank": 5,
+        "col": 4,
+        "row": 0,
+        "rank_label": "#5",
+        "pw_label": "46.8%"
+      },
+      {
+        "district": "Bachok",
+        "state": "Kelantan",
+        "pw": 47.4,
+        "rank": 6,
+        "col": 0,
+        "row": 1,
+        "rank_label": "#6",
+        "pw_label": "47.4%"
+      },
+      {
+        "district": "Pitas",
+        "state": "Sabah",
+        "pw": 47.4,
+        "rank": 7,
+        "col": 1,
+        "row": 1,
+        "rank_label": "#7",
+        "pw_label": "47.4%"
+      },
+      {
+        "district": "Lundu",
+        "state": "Sarawak",
+        "pw": 47.4,
+        "rank": 8,
+        "col": 2,
+        "row": 1,
+        "rank_label": "#8",
+        "pw_label": "47.4%"
+      },
+      {
+        "district": "Asajaya",
+        "state": "Sarawak",
+        "pw": 48.5,
+        "rank": 9,
+        "col": 3,
+        "row": 1,
+        "rank_label": "#9",
+        "pw_label": "48.5%"
+      },
+      {
+        "district": "Tawau",
+        "state": "Sabah",
+        "pw": 50.9,
+        "rank": 10,
+        "col": 4,
+        "row": 1,
+        "rank_label": "#10",
+        "pw_label": "50.9%"
+      }
+    ]
   },
-  "transform": [
-    {
-      "filter": "isValid(datum.piped_water)"
-    },
-    {
-      "window": [
-        {
-          "op": "row_number",
-          "as": "rownum"
-        }
-      ],
-      "sort": [
-        {
-          "field": "piped_water",
-          "order": "ascending"
-        }
-      ]
-    },
-    {
-      "filter": "datum.rownum <= 12"
-    }
-  ],
   "layer": [
     {
       "mark": {
-        "type": "bar",
-        "cornerRadiusEnd": 3
+        "type": "rect",
+        "cornerRadius": 8
       },
       "encoding": {
-        "y": {
-          "field": "district",
-          "type": "nominal",
-          "sort": "x",
-          "title": null
-        },
         "x": {
-          "field": "piped_water",
+          "field": "col",
+          "type": "ordinal",
+          "axis": null,
+          "scale": {
+            "paddingInner": 0.06
+          }
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null,
+          "scale": {
+            "paddingInner": 0.06
+          }
+        },
+        "color": {
+          "field": "pw",
           "type": "quantitative",
-          "title": "Households with piped water (%)",
           "scale": {
             "domain": [
-              0,
-              100
+              20,
+              35,
+              50
+            ],
+            "range": [
+              "#65452C",
+              "#A9764E",
+              "#D4B896"
             ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "rank_label",
+            "type": "nominal",
+            "title": "Rank"
+          },
+          {
+            "field": "district",
+            "type": "nominal",
+            "title": "District"
+          },
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "pw_label",
+            "type": "nominal",
+            "title": "Piped water"
           }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "white",
+        "opacity": 0.9,
+        "dy": -30
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "rank_label"
         }
       }
     },
     {
       "mark": {
         "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 4,
-        "fontSize": 11
+        "fontSize": 13,
+        "fontWeight": 800,
+        "color": "white",
+        "dy": -10
       },
       "encoding": {
-        "y": {
-          "field": "district",
-          "type": "nominal",
-          "sort": "x"
-        },
         "x": {
-          "field": "piped_water",
-          "type": "quantitative"
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
         },
         "text": {
-          "field": "piped_water",
-          "type": "quantitative",
-          "format": ".1f"
+          "field": "district"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 500,
+        "color": "white",
+        "opacity": 0.85,
+        "dy": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "state"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 14,
+        "fontWeight": 900,
+        "color": "white",
+        "dy": 28
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "pw_label"
         }
       }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "text": {
+      "font": "Inter"
+    }
+  }
 }

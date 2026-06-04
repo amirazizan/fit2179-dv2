@@ -4,74 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Education Access and Household Wellbeing Across Malaysian Districts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Education Access and Household Wellbeing Across Malaysian Districts</h1>
-    <p class="intro">
-      Household wellbeing is shaped by more than income alone. This visualisation compares Malaysian districts using
-      three connected dimensions: household income, access to basic amenities, and education access measured through school density.
-    </p>
-    <p class="intro">
-      The analysis uses 2022 as the latest common district-level comparison year across the selected datasets.
-      The aim is not only to identify the districts that appear strongest overall, but also to show where economic advantage,
-      service access, and educational provision do not fully align.
-    </p>
-    <p class="method-note">
-      Method note: the HDX administrative boundary file contains fewer districts than the cleaned tabular dataset, so a small number
-      of district values do not appear in the maps. The ranked and state-level charts remain unaffected by this boundary mismatch.
-    </p>
+<main class="container">
 
-    <h2>1. The geography of household wellbeing</h2>
-    <p class="section-text">
-      The opening section establishes where household income is strongest. The map gives the national overview,
-      while the ranked charts show how far the upper end of the income distribution is concentrated in a limited set of districts.
-    </p>
-    <div class="chart-card"><div id="vis1"></div><p class="takeaway"><strong>Takeaway:</strong> Higher-income districts cluster around the Klang Valley, Johor Bahru, and a small number of economically distinctive districts such as Bintulu.</p></div>
-    <div class="chart-grid two">
-      <div class="chart-card"><div id="vis2"></div><p class="takeaway"><strong>Takeaway:</strong> The top-income ranking is dominated by major urban and industrial centres rather than a broad spread across all states.</p></div>
-      <div class="chart-card"><div id="vis3"></div><p class="takeaway"><strong>Takeaway:</strong> State averages reduce the influence of exceptional districts and highlight which states perform well more consistently across their districts.</p></div>
+  <header class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">FIT2179 Data Visualisation · 2026</p>
+      <h1>Education Access and Household Wellbeing Across Malaysian Districts</h1>
+      <p class="standfirst">Malaysia's strongest districts are not simply the richest. This visualisation compares income, school density, and basic services across districts to show where advantage is concentrated — and where multiple indicators diverge.</p>
+      <p class="thesis">Income sets the baseline, but education access and basic services change the picture.</p>
+      <div class="legend-card">
+        <span><i class="dot income"></i>Income · slate</span>
+        <span><i class="dot school"></i>Education · teal</span>
+        <span><i class="dot service"></i>Services · bronze</span>
+        <span><i class="dot wellbeing"></i>Wellbeing · plum</span>
+        <p class="legend-note">Colour is assigned by story layer. Maps and heatmaps keep colour scales; single-series charts use intentional highlights instead.</p>
+      </div>
     </div>
-
-    <h2>2. Looking beyond raw counts</h2>
-    <p class="section-text">
-      School counts alone can be misleading because large and heavily populated districts naturally contain more institutions.
-      A better comparison is school density, which adjusts school provision for population size and reveals where district patterns change.
-    </p>
-    <div class="chart-card"><div id="vis4"></div><p class="takeaway"><strong>Takeaway:</strong> After trimming extreme outliers, the relationship between school density and household income appears weak to moderate rather than strongly linear.</p></div>
-    <div class="chart-grid two">
-      <div class="chart-card"><div id="vis5"></div><p class="takeaway"><strong>Takeaway:</strong> School density follows a different geography from income, showing that educational provision and economic strength do not always move together.</p></div>
-      <div class="chart-card"><div id="vis6"></div><p class="takeaway"><strong>Takeaway:</strong> A small group of sparsely populated districts produce extremely high school-density values and would dominate an unfiltered comparison.</p></div>
+    <div class="hero-metrics">
+      <article class="metric income">
+        <p class="metric-label">Highest District Income</p>
+        <p class="metric-value">RM 12,608</p>
+        <p class="metric-note">Sepang, Selangor</p>
+      </article>
+      <article class="metric well">
+        <p class="metric-label">Top Wellbeing State</p>
+        <p class="metric-value">67.3</p>
+        <p class="metric-note">Selangor · score out of 100</p>
+      </article>
+      <article class="metric service">
+        <p class="metric-label">Weakest Piped Water</p>
+        <p class="metric-value">21.6%</p>
+        <p class="metric-note">Betong, Sarawak</p>
+      </article>
+      <article class="metric edu">
+        <p class="metric-label">Highest School Density</p>
+        <p class="metric-value">1,006</p>
+        <p class="metric-note">per 10k · Tanjung Manis, Sarawak</p>
+      </article>
+      <article class="metric well" style="grid-column: span 2;">
+        <p class="metric-label">Districts Analysed</p>
+        <p class="metric-value">160</p>
+        <p class="metric-note">districts across all Malaysian states · 2022 data</p>
+      </article>
     </div>
+  </header>
 
-    <h2>3. Where basic services still lag</h2>
-    <p class="section-text">
-      Basic amenities are generally high across Malaysia, but weaker districts still matter because they reveal where the most basic
-      living conditions remain uneven. The final section focuses on the clearest remaining gaps and then closes with a state-level summary.
-    </p>
-    <div class="chart-grid two">
-      <div class="chart-card"><div id="vis7"></div><p class="takeaway"><strong>Takeaway:</strong> The weakest piped-water districts are concentrated in Sabah, Sarawak, and a small number of outliers elsewhere, suggesting that basic service gaps are geographically uneven.</p></div>
-      <div class="chart-card"><div id="vis8"></div><p class="takeaway"><strong>Takeaway:</strong> The composite score gives a broad state-level summary, but the detailed district charts remain necessary because state averages can hide important internal variation.</p></div>
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="pill income">① Income Sets the Baseline</div>
+      <p class="chapter-text">Where is economic advantage concentrated? Income is the first layer of wellbeing — before asking whether education and services follow the same geography.</p>
     </div>
+    <section class="panel">
+      <h2>Where is income advantage concentrated?</h2>
+      <p class="panel-text">Darker districts show higher median household income in 2022. The Klang Valley dominates — Bintulu in Sarawak is the only major outlier, driven by oil and gas rather than urban concentration.</p>
+      <div id="vis1" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Income advantage is concentrated around the Klang Valley. Bintulu is the only significant outlier outside this cluster.</p>
+    </section>
+    <section class="panel">
+      <h2>Which districts lead household income?</h2>
+      <p class="panel-text">The top 12 districts ranked by median income, with the top three darkened. Bintulu is the only non-Klang Valley district — all others are in Selangor or Kuala Lumpur.</p>
+      <div id="vis2" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Selangor dominates the top 12. Bintulu's presence reflects resource wealth, not urban concentration.</p>
+    </section>
+    <section class="panel">
+      <h2>Which states show stronger income conditions?</h2>
+      <p class="panel-text">Each dot shows a state's average district income, ranked highest to lowest. The W.P. territories are outliers because they contain no rural districts to pull their averages down.</p>
+      <div id="vis3" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Kelantan sits well below all others even after district extremes are averaged out. W.P. territories are statistical outliers because they contain no rural areas.</p>
+    </section>
+  </section>
 
-    <footer>
-      Sources: DOSM OpenDOSM, data.gov.my, and HDX administrative boundaries. Visualisation built with Vega-Lite for FIT2179 Data Visualisation 2.
-    </footer>
-  </div>
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="pill edu">② Education Access Changes the Picture</div>
+      <p class="chapter-text">Does school access follow income? School density adjusts for population size and reveals a different geography from household income.</p>
+    </div>
+    <section class="panel">
+      <h2>Does school access follow income?</h2>
+      <p class="panel-text">Each dot is one district. The dashed lines show the national medians — dividing the chart into four quadrants. Most high-income Klang Valley districts sit in the top-left quadrant, showing high income but low school density.</p><p class="panel-text" style="font-size:13px;color:#8B7B6A;margin-top:-12px;margin-bottom:16px;">Grey dots = all districts. Bronze dots = selected examples. Dashed lines = national medians.</p>
+      <div id="vis4" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> High income does not guarantee high school density. The Klang Valley leads on income but lags on school access relative to population.</p>
+    </section>
+    <section class="panel">
+      <h2>Where is school density strongest relative to population?</h2>
+      <p class="panel-text">Darker teal districts have more schools per 10,000 residents, adjusted for population size. Interior Sarawak appears darkest because populations are extremely sparse — not because provision is unusually strong.</p>
+      <div id="vis5" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> School density follows a completely different geography from income. Interior Sarawak leads the map despite having low household income.</p>
+    </section>
+    <section class="panel">
+      <h2>Why do some districts show extreme school-density values?</h2>
+      <p class="panel-text">School density divides total schools by population — sparsely populated districts produce very high ratios. These districts are not the best-served; they are the least densely populated, and all top outliers are in Sarawak.</p>
+      <div id="vis6" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Tanjung Manis at 1,006 schools per 10,000 residents is over 25 times the national average — because its population is extremely sparse, not because provision is strong.</p>
+    </section>
+  </section>
 
-  <script>
-    vegaEmbed('#vis1', 'js/income_map.vg.json', {actions: false});
-    vegaEmbed('#vis2', 'js/income_rank.vg.json', {actions: false});
-    vegaEmbed('#vis3', 'js/state_income.vg.json', {actions: false});
-    vegaEmbed('#vis4', 'js/income_vs_school_density_trimmed.vg.json', {actions: false});
-    vegaEmbed('#vis5', 'js/school_density_map.vg.json', {actions: false});
-    vegaEmbed('#vis6', 'js/school_density_outliers.vg.json', {actions: false});
-    vegaEmbed('#vis7', 'js/piped_water_rank.vg.json', {actions: false});
-    vegaEmbed('#vis8', 'js/state_wellbeing.vg.json', {actions: false});
-  </script>
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="pill service">③ Basic Services Reveal the Remaining Gaps</div>
+      <p class="chapter-text">Even where income and school access look strong, household wellbeing depends on infrastructure. Piped water and electricity reveal where living conditions still lag.</p>
+    </div>
+    <section class="panel">
+      <h2>Which districts have the weakest piped-water access?</h2>
+      <p class="panel-text">This tile chart shows the ten districts with the weakest piped-water access. Most are in Sarawak and Sabah, while Bachok stands out as the clearest Peninsular exception.</p><p class="panel-text" style="font-size:13px;color:#8B7B6A;margin-top:-12px;margin-bottom:14px;font-style:italic;">Darker tiles = weaker piped-water access. Ordered from lowest to higher access.</p>
+      <div id="vis7" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Piped-water gaps are concentrated in a small group of districts, especially in Sarawak and Sabah. Bachok shows that the issue is not limited to East Malaysia.</p>
+    </section>
+    <section class="panel">
+      <h2>Which districts face gaps in both water and electricity?</h2>
+      <p class="panel-text">Each district shows two symbols — a circle for piped water gap and a square for electricity gap. Districts with both symbols far right face compound disadvantage; most have near-zero electricity gaps.</p>
+      <div id="vis8" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Most service gaps are driven by piped water shortfalls. Pitas and Kabong face compound disadvantage — both water and electricity access are weak.</p>
+    </section>
+    <section class="panel">
+      <h2>How consistent are basic services across states?</h2>
+      <p class="panel-text">Darker cells show stronger average household access, with states sorted by piped water performance. Electricity is near-universal — piped water is where state-level gaps remain.</p>
+      <div id="vis9" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Electricity access is nearly universal. Piped water is where state-level gaps remain — particularly in Sarawak and Kelantan.</p>
+    </section>
+  </section>
+
+  <section class="chapter">
+    <div class="chapter-head">
+      <div class="pill well">④ Bringing the Indicators Together</div>
+      <p class="chapter-text">Income, education, and services each reveal different patterns. The composite score combines all three to identify where multiple advantages align — and to show what drives each district's overall strength.</p>
+    </div>
+    <section class="panel">
+      <h2>What drives the top districts' overall scores?</h2>
+      <p class="panel-text">Each bar totals to the composite score out of 100, split into equal one-third contributions from income (slate), school density (teal), and services (bronze). Sepang scores 67.0 because all three contribute strongly; Telang Usan's score is driven mainly by school density.</p>
+      <div id="vis10" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> The top districts reach their scores in different ways. Sepang scores strongly because income and services both contribute, while Telang Usan's score is mainly lifted by unusually high school density.</p>
+    </section>
+    <section class="panel">
+      <h2>Which states perform above or below the national average?</h2>
+      <p class="panel-text">Each bar shows how far a state sits above or below the national average composite wellbeing score. Selangor leads by 16.5 points; Terengganu ranks second despite lower income because school density and service scores compensate.</p>
+      <div id="vis11" class="vis"></div>
+      <p class="takeaway"><b>Takeaway:</b> Wellbeing rankings diverge from income rankings. Terengganu outperforms wealthier states because composite strength reflects more than income alone.</p>
+    </section>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Conclusion:</strong> District wellbeing is multi-dimensional. Income shows where economic advantage is concentrated — but school density and basic services reveal that opportunity and living conditions do not follow the same geography. The strongest districts are those where income, education access, and household infrastructure come together.</p>
+    <p><strong>Data sources:</strong>
+      <a href="https://open.dosm.gov.my" target="_blank">DOSM OpenDOSM</a> — household income and amenities by district (2022);
+      <a href="https://data.gov.my" target="_blank">data.gov.my</a> — public education institutions by district (2022);
+      <a href="https://data.humdata.org/dataset/cod-ab-mys" target="_blank">HDX / OCHA</a> — Malaysia district boundary file (mys_admin2).
+    </p>
+    <p><strong>How this was built:</strong> District-level CSV files from DOSM and data.gov.my were cleaned and merged into a single 2022 master table. School counts were normalised by population, and the composite wellbeing score used equal-weighted min-max normalisation across income, school density, and basic services. The visualisation uses choropleth maps to show geographic income and school-density patterns; ranked and diverging charts to compare district and state leaders and gaps; a quadrant scatter to reveal income–education mismatches; a service-tail strip chart to show low-access outliers; a heatmap to compare state service consistency; and a stacked contribution chart to explain what drives each district's composite score. All charts were built in Vega-Lite v5, embedded in a single-scroll HTML page hosted on GitHub Pages.</p>
+    <p><strong>Method note:</strong> 2022 is the latest common district-level year across all selected datasets. A small number of districts do not appear in the maps because the HDX boundary file contains fewer districts than the tabular dataset. School density values above 120 per 10,000 are capped in the map colour scale; actual values show in tooltips.</p>
+    <p><strong>Author:</strong> Ahmad Amiruddin Azizan · FIT2179 Data Visualisation 2 · Monash University Malaysia · 2026. Built with <a href="https://vega.github.io/vega-lite/" target="_blank">Vega-Lite</a>.</p>
+  </footer>
+
+</main>
+<script>
+  const opts = { actions: false, renderer: "svg" };
+  vegaEmbed('#vis1', 'js/income_map.vg.json', opts);
+  vegaEmbed('#vis2', 'js/income_rank.vg.json', opts);
+  vegaEmbed('#vis3', 'js/state_income.vg.json', opts);
+  vegaEmbed('#vis4', 'js/income_vs_school_density_trimmed.vg.json', opts);
+  vegaEmbed('#vis5', 'js/school_density_map.vg.json', opts);
+  vegaEmbed('#vis6', 'js/school_density_outliers.vg.json', opts);
+  vegaEmbed('#vis7', 'js/piped_water_rank.vg.json', opts);
+  vegaEmbed('#vis8', 'js/service_gap_rank.vg.json', opts);
+  vegaEmbed('#vis9', 'js/state_services.vg.json', opts);
+  vegaEmbed('#vis10', 'js/district_wellbeing_rank.vg.json', opts);
+  vegaEmbed('#vis11', 'js/state_wellbeing.vg.json', opts);
+</script>
 </body>
 </html>

@@ -1,0 +1,418 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 820,
+  "height": 380,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
+  },
+  "data": {
+    "values": [
+      {
+        "district": "Sepang",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 33.3,
+        "composite": 67.0,
+        "order": 1
+      },
+      {
+        "district": "Sepang",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.4,
+        "composite": 67.0,
+        "order": 1
+      },
+      {
+        "district": "Sepang",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 67.0,
+        "order": 1
+      },
+      {
+        "district": "Telang Usan",
+        "state": "Sarawak",
+        "component": "Income",
+        "contrib": 5.0,
+        "composite": 64.2,
+        "order": 2
+      },
+      {
+        "district": "Telang Usan",
+        "state": "Sarawak",
+        "component": "School density",
+        "contrib": 25.9,
+        "composite": 64.2,
+        "order": 2
+      },
+      {
+        "district": "Telang Usan",
+        "state": "Sarawak",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 64.2,
+        "order": 2
+      },
+      {
+        "district": "Ulu Langat",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 28.8,
+        "composite": 60.7,
+        "order": 3
+      },
+      {
+        "district": "Ulu Langat",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.1,
+        "composite": 60.7,
+        "order": 3
+      },
+      {
+        "district": "Ulu Langat",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 31.8,
+        "composite": 60.7,
+        "order": 3
+      },
+      {
+        "district": "Gombak",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 25.5,
+        "composite": 58.9,
+        "order": 4
+      },
+      {
+        "district": "Gombak",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.1,
+        "composite": 58.9,
+        "order": 4
+      },
+      {
+        "district": "Gombak",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 58.9,
+        "order": 4
+      },
+      {
+        "district": "Kuala Langat",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 25.2,
+        "composite": 58.8,
+        "order": 5
+      },
+      {
+        "district": "Kuala Langat",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.3,
+        "composite": 58.8,
+        "order": 5
+      },
+      {
+        "district": "Kuala Langat",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 58.8,
+        "order": 5
+      },
+      {
+        "district": "Petaling",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 23.6,
+        "composite": 57.0,
+        "order": 6
+      },
+      {
+        "district": "Petaling",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.0,
+        "composite": 57.0,
+        "order": 6
+      },
+      {
+        "district": "Petaling",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 57.0,
+        "order": 6
+      },
+      {
+        "district": "Tanjung Manis",
+        "state": "Sarawak",
+        "component": "Income",
+        "contrib": 3.1,
+        "composite": 54.2,
+        "order": 7
+      },
+      {
+        "district": "Tanjung Manis",
+        "state": "Sarawak",
+        "component": "School density",
+        "contrib": 33.3,
+        "composite": 54.2,
+        "order": 7
+      },
+      {
+        "district": "Tanjung Manis",
+        "state": "Sarawak",
+        "component": "Services",
+        "contrib": 17.8,
+        "composite": 54.2,
+        "order": 7
+      },
+      {
+        "district": "Johor Bahru",
+        "state": "Johor",
+        "component": "Income",
+        "contrib": 19.1,
+        "composite": 52.8,
+        "order": 8
+      },
+      {
+        "district": "Johor Bahru",
+        "state": "Johor",
+        "component": "School density",
+        "contrib": 0.3,
+        "composite": 52.8,
+        "order": 8
+      },
+      {
+        "district": "Johor Bahru",
+        "state": "Johor",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 52.8,
+        "order": 8
+      },
+      {
+        "district": "Klang",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 19.0,
+        "composite": 52.4,
+        "order": 9
+      },
+      {
+        "district": "Klang",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.1,
+        "composite": 52.4,
+        "order": 9
+      },
+      {
+        "district": "Klang",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 33.3,
+        "composite": 52.4,
+        "order": 9
+      },
+      {
+        "district": "Ulu Selangor",
+        "state": "Selangor",
+        "component": "Income",
+        "contrib": 17.3,
+        "composite": 50.9,
+        "order": 10
+      },
+      {
+        "district": "Ulu Selangor",
+        "state": "Selangor",
+        "component": "School density",
+        "contrib": 0.3,
+        "composite": 50.9,
+        "order": 10
+      },
+      {
+        "district": "Ulu Selangor",
+        "state": "Selangor",
+        "component": "Services",
+        "contrib": 33.2,
+        "composite": 50.9,
+        "order": 10
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": [
+            "Sepang",
+            "Telang Usan",
+            "Ulu Langat",
+            "Gombak",
+            "Kuala Langat",
+            "Petaling",
+            "Tanjung Manis",
+            "Johor Bahru",
+            "Klang",
+            "Ulu Selangor"
+          ],
+          "title": null,
+          "axis": {
+            "labelFontSize": 13,
+            "labelLimit": 160
+          }
+        },
+        "x": {
+          "field": "contrib",
+          "type": "quantitative",
+          "title": "Contribution to composite wellbeing score",
+          "stack": "zero",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "color": {
+          "field": "component",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Income",
+              "School density",
+              "Services"
+            ],
+            "range": [
+              "#263947",
+              "#1F5F62",
+              "#C9A87C"
+            ]
+          },
+          "legend": {
+            "title": "Component",
+            "orient": "top",
+            "labelFontSize": 13,
+            "titleFontSize": 13,
+            "symbolSize": 150
+          }
+        },
+        "tooltip": [
+          {
+            "field": "district",
+            "type": "nominal"
+          },
+          {
+            "field": "component",
+            "type": "nominal",
+            "title": "Component"
+          },
+          {
+            "field": "contrib",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Contribution"
+          },
+          {
+            "field": "composite",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Composite score"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.component == 'Services'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#1F2528"
+      },
+      "encoding": {
+        "y": {
+          "field": "district",
+          "type": "nominal",
+          "sort": [
+            "Sepang",
+            "Telang Usan",
+            "Ulu Langat",
+            "Gombak",
+            "Kuala Langat",
+            "Petaling",
+            "Tanjung Manis",
+            "Johor Bahru",
+            "Klang",
+            "Ulu Selangor"
+          ]
+        },
+        "x": {
+          "field": "composite",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              100
+            ]
+          }
+        },
+        "text": {
+          "field": "composite",
+          "type": "quantitative",
+          "format": ".1f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "background": null,
+    "font": "Inter",
+    "axis": {
+      "labelFont": "Inter",
+      "titleFont": "Inter",
+      "labelColor": "#6B6F72",
+      "titleColor": "#6B6F72",
+      "gridColor": "#E6DED4",
+      "domainColor": "#DED6CB",
+      "tickColor": "#DED6CB",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "text": {
+      "font": "Inter",
+      "color": "#1F2528"
+    }
+  },
+  "padding": {
+    "left": 70,
+    "right": 90,
+    "top": 35,
+    "bottom": 55
+  }
+}
